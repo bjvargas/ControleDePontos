@@ -1,6 +1,6 @@
 <?php
 
-namespace Alura\Cursos\Infra;
+namespace Sistema\Ponto\Infra;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,9 +14,11 @@ class EntityManagerCreator
         $isDevMode = false;
 
         $dbParams = array(
-            'driver' => 'pdo_sqlite',
-            'path' => __DIR__ . '/../../db.sqlite'
-        );
+            'driver'   => 'pdo_mysql',
+            'user'     => 'root',
+            'password' => '',
+            'dbname'   => 'sistema_ponto',
+                );
 
         $config = Setup::createAnnotationMetadataConfiguration(
             $paths,
