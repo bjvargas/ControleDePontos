@@ -1,5 +1,5 @@
 <?php
-namespace Sistema\Armazenamento\Entity;
+namespace Sistema\Ponto\Entity;
 /**
  * @Entity
  * @Table(name="usuarios")

@@ -46,7 +46,7 @@ class Registro
         return $this->justificativa;
     }
 
-    public function setDescricao(string $justificativa): void
+    public function setJustificativa(string $justificativa): void
     {
         $this->justificativa = $justificativa;
     }
@@ -79,6 +79,13 @@ class Registro
     public function setData(string $data): void
     {
         $this->data = $data;
+    }
+
+    public function calculaHoras(): void
+    {
+        $to_time = strtotime($this->hora_entrada);
+        $from_time = strtotime($this->hora_saida);
+        echo round(abs($to_time - $from_time) / 60,2). " minuto(s)";
     }
 
 }

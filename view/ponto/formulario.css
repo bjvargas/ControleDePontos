@@ -1,0 +1,30 @@
+ div h1 {
+     font-style: inherit;
+     font-family: Arial, Helvetica, sans-serif;
+     font-size: 3em;
+ }
+ 
+ .formulario {
+     text-align: center;
+     padding: 8px;
+ }
+ 
+ form {
+     padding-left: 5%;
+     margin-bottom: 20px;
+ }
+ 
+ .botao {
+     font-size: 30px;
+     border: none;
+     border-radius: 10px;
+     background-color: rgb(161, 196, 228);
+ }
+ 
+ .botao:hover {
+     background-color: lawngreen;
+ }
+ 
+ .botao:focus {
+     outline-style: none;
+ }
