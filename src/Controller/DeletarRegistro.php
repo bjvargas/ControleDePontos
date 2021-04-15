@@ -25,6 +25,8 @@ class DeletarRegistro implements InterfaceControladorRequisicao
         );
 
         if (is_null($id) || $id === false) {
+            $_SESSION['tipo_mensagem'] = 'danger';
+            $_SESSION['mensagem'] = 'Registro inexistente';
             header('Location: /listar-registros');
             return;
         }
@@ -32,6 +34,9 @@ class DeletarRegistro implements InterfaceControladorRequisicao
         $registro = $this->entityManager->getReference(Registro::class, $id);
         $this->entityManager->remove($registro);
         $this->entityManager->flush();
+        $_SESSION['tipo_mensagem'] = 'success';
+        $_SESSION['mensagem'] = 'Registro excluído com sucesso';
+
         header('Location: /listar-registros');
     }
 }

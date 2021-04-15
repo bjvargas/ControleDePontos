@@ -10,7 +10,9 @@ if (!isset($_SESSION['logado']) && $caminho !=='/login'
 <html lang="pt-BR">
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="/listar-registros">Registros</a>
-
+    <a class="navbar-brand"><span style="color: White;"> <?php echo $_SESSION['email']; ?></span></a>
+    <a class="navbar-brand"><span style="color: White;"> Perfil: <?php echo $_SESSION['perfil']; ?> </span></a>
+    
     <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
             <a class="nav-link" href="/logout">Sair</a>
@@ -32,6 +34,15 @@ if (!isset($_SESSION['logado']) && $caminho !=='/login'
         <div class="jumbotron">
             <h1>Editando Registro</h1>
         </div>
+        <?php if (isset($_SESSION['mensagem'])): ?>
+    <div class="alert alert-<?= $_SESSION['tipo_mensagem']; ?>">
+        <?= $_SESSION['mensagem']; ?>
+    </div>
+    <?php
+        unset($_SESSION['mensagem']);
+        unset($_SESSION['tipo_mensagem']);
+    endif;
+        ?>
         <div class="col-12 m-auto">
             <table class="table text-center">
                 <thead class="table-dark">

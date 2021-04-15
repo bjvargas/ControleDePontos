@@ -7,6 +7,7 @@ use Sistema\Ponto\Controller\FormularioLogin;
 use Sistema\Ponto\Controller\ListarRegistros;
 use Sistema\Ponto\Controller\RealizarLogin;
 use Sistema\Ponto\Controller\SalvarRegistro;
+use Sistema\Ponto\Controller\SelecionarPerfil;
 
 $rotas = [
     '/listar-registros' => ListarRegistros::class,
@@ -15,7 +16,8 @@ $rotas = [
     '/editar-registro' => EditarRegistro::class,
     '/login' => FormularioLogin::class,
     '/realiza-login' => RealizarLogin::class,
-    '/logout' => Deslogar::class
+    '/logout' => Deslogar::class,
+    '/perfil' => SelecionarPerfil::class
 
 
 ];

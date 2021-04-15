@@ -19,32 +19,39 @@ class RealizarLogin implements InterfaceControladorRequisicao
     public function processaRequisicao(): void
     {
 
-        $email = filter_input(INPUT_POST,
-        'email',
-        FILTER_VALIDATE_EMAIL
-    );
+        $email = filter_input(
+            INPUT_POST,
+            'email',
+            FILTER_VALIDATE_EMAIL
+        );
 
-    if (is_null($email) || $email === false) {
-        echo "O e-mail digitado não é um e-mail válido";
-        exit();
-    }
+        if (is_null($email) || $email === false) {
+            $_SESSION['tipo_mensagem'] = 'danger';
+            $_SESSION['mensagem'] = "O e-mail digitado não é um e-mail válido";
+            header('Location: /login');
+            exit();
+        }
 
-    $senha = filter_input(INPUT_POST,
-        'senha',
-        FILTER_SANITIZE_STRING);
+        $senha = filter_input(
+            INPUT_POST,
+            'senha',
+            FILTER_SANITIZE_STRING
+        );
 
-    /** @var  $usuario */
-    $usuario = $this->repositorioUsuarios
-        ->findOneBy(['email' => $email]);
+        /** @var  $usuario */
+        $usuario = $this->repositorioUsuarios
+            ->findOneBy(['email' => $email]);
 
-    if (is_null($usuario) || !$usuario->senhaEstaCorreta($senha)) {
-        echo "E-mail ou senha inválidos";
-        return;
-    }
+        if (is_null($usuario) || !$usuario->senhaEstaCorreta($senha)) {
+            $_SESSION['tipo_mensagem'] = 'danger';
+            $_SESSION['mensagem'] = "E-mail ou senha inválidos";
+            header('Location: /login');
+            return;
+        }
 
-    $_SESSION['logado'] = true;
+        $_SESSION['logado'] = true;
+        $_SESSION['email'] = $usuario->getEmail();
 
-    header('Location: /listar-registros');
-
+        header('Location: /perfil');
     }
 }

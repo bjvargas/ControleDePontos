@@ -21,6 +21,11 @@ class Usuario
      */
     private $senha;
 
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
     public function senhaEstaCorreta(string $senhaPura): bool
     {
         return password_verify($senhaPura, $this->senha);

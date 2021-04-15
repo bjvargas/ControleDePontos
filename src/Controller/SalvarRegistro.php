@@ -18,9 +18,6 @@ class SalvarRegistro implements InterfaceControladorRequisicao
 
     public function processaRequisicao(): void
     {
-
-
-
         $justificativa = filter_input(INPUT_POST, 'justificativa');
         $registro = new Registro();
         $registro->setJustificativa($justificativa);
@@ -36,10 +33,13 @@ class SalvarRegistro implements InterfaceControladorRequisicao
 
         if (!is_null($id) && $id !== false) {
             $registro->setId($id);
+            $_SESSION['mensagem']= 'Registro atualizado com sucesso';
             $this->entityManager->merge($registro);
         } else {
+            $_SESSION['mensagem']= 'Registro iserido com sucesso';
             $this->entityManager->persist($registro);
         }
+        $_SESSION['tipo_mensagem'] = 'success';
         $this->entityManager->flush();
         header('Location: /listar-registros');
     }

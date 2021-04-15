@@ -18,10 +18,14 @@ class ListarRegistros implements InterfaceControladorRequisicao
     }
 
 
-    public function processaRequisicao() :void
-    {
+    public function processaRequisicao(): void
+    {   
+
+        if(!isset($_SESSION['perfil'])) {
+            $_SESSION['perfil'] = $_POST['perfil'];
+        }
+
         $registros = $this->objRegistro->findAll();
         require __DIR__ . '/../../view/ponto/listar-registros.php';
-
     }
 }

@@ -10,7 +10,9 @@ if (!isset($_SESSION['logado']) && $caminho !=='/login'
 <html lang="pt-BR">
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="/listar-registros">Registros</a>
-
+    <a class="navbar-brand"><span style="color: White;"> <?php echo $_SESSION['email']; ?></span></a>
+    <a class="navbar-brand"><span style="color: White;"> Perfil: <?php echo $_SESSION['perfil']; ?> </span></a>
+    
     <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
             <a class="nav-link" href="/logout">Sair</a>
@@ -26,7 +28,15 @@ if (!isset($_SESSION['logado']) && $caminho !=='/login'
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-
+<?php if (isset($_SESSION['mensagem'])): ?>
+    <div class="alert alert-<?= $_SESSION['tipo_mensagem']; ?>">
+        <?= $_SESSION['mensagem']; ?>
+    </div>
+    <?php
+        unset($_SESSION['mensagem']);
+        unset($_SESSION['tipo_mensagem']);
+    endif;
+        ?>
 <body class="formulario">
     <div class="container">
         <div class="jumbotron">
